@@ -1,64 +1,64 @@
 body {
-    text-align: center;
-    font-family: Arial, sans-serif;
-    background: white;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    height: 100vh;
+    background: pink;
+    font-family: Arial, sans-serif;
     overflow: hidden;
 }
 
-.scene {
+.container {
     position: relative;
-    width: 300px;
-    height: 200px;
+    text-align: center;
 }
 
-.stick-girl, .stick-boy {
-    position: absolute;
-    width: 50px;
+.gift-box {
+    position: relative;
+    width: 120px;
     height: 100px;
-    background: transparent;
-    color: black;
-    font-size: 40px;
+    background: red;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
     transition: all 0.5s ease-in-out;
 }
 
-.stick-girl {
-    left: 200px;
+.lid {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 120px;
+    height: 30px;
+    background: red;
+    border-radius: 10px;
+    transform-origin: center;
+    transition: transform 0.5s ease-in-out;
 }
 
-.stick-girl::before {
-    content: '♀'; /* Female symbol */
+.ribbon {
     position: absolute;
     top: -10px;
-    left: 10px;
+    left: 50%;
+    width: 10px;
+    height: 120px;
+    background: gold;
+    transform: translateX(-50%);
 }
 
-.stick-boy {
-    left: 50px;
+.hidden {
+    display: none;
 }
 
-.stick-boy::before {
-    content: '♂'; /* Male symbol */
-    position: absolute;
-    top: -10px;
-    left: 10px;
-}
-
-.dialogue {
+.message {
     background: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
     margin-top: 20px;
-}
-
-.buttons {
-    margin-top: 10px;
-    position: relative;
 }
 
 button {
@@ -80,8 +80,4 @@ button {
     color: white;
     position: absolute;
     transition: transform 0.3s ease-in-out;
-}
-
-.colorful {
-    color: red !important;
 }
