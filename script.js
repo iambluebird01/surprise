@@ -8,6 +8,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const loveMusic = document.getElementById("loveMusic");
     const questionText = document.getElementById("question-text");
 
+    // Enable music play when user interacts
+    document.body.addEventListener("click", function() {
+        loveMusic.play();
+    }, { once: true });
+
     // Click to open the gift box
     giftBox.addEventListener("click", function() {
         lid.style.transform = "rotateX(180deg)";
