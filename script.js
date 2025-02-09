@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const giftBox = document.getElementById("gift-box");
     const lid = document.querySelector(".lid");
+    const loading = document.getElementById("loading");
     const message = document.getElementById("message");
     const noButton = document.getElementById("no");
     const yesButton = document.getElementById("yes");
@@ -12,8 +13,14 @@ document.addEventListener("DOMContentLoaded", function() {
         lid.style.transform = "rotateX(180deg)";
 
         setTimeout(() => {
-            message.classList.remove("hidden");
             giftBox.style.display = "none";
+            loading.classList.remove("hidden"); // Show loading screen
+            loveMusic.play(); // Play music while loading
+
+            setTimeout(() => {
+                loading.classList.add("hidden"); // Hide loading screen
+                message.classList.remove("hidden"); // Show question
+            }, 30000); // 30 seconds delay
         }, 800);
     });
 
@@ -27,11 +34,10 @@ document.addEventListener("DOMContentLoaded", function() {
     // "Yes" button triggers celebration
     yesButton.addEventListener("click", function() {
         document.body.style.animation = "backgroundPulse 3s infinite";
-        loveMusic.play(); // Play romantic song
 
         // Change message text
         questionText.innerHTML = "Yay! I Love You! ❤️";
-        
+
         // Hide buttons
         yesButton.style.display = "none";
         noButton.style.display = "none";
@@ -51,13 +57,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     setTimeout(() => confetti.remove(), 2000);
                 }
-                setTimeout(celebration, 500); // Keep adding confetti
+                setTimeout(celebration, 500);
             } else {
-                document.body.style.animation = "none"; // Stop background pulse
+                document.body.style.animation = "none";
                 loveMusic.pause();
             }
         }
-        
+
         celebration();
     });
 });
