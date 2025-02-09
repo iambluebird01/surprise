@@ -7,7 +7,7 @@
     <style>
         body {
             text-align: center;
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             background-color: pink;
             height: 100vh;
             display: flex;
@@ -15,6 +15,7 @@
             align-items: center;
             flex-direction: column;
             overflow: hidden;
+            position: relative;
         }
         .container {
             background: white;
@@ -40,6 +41,7 @@
         #yes {
             background-color: red;
             color: white;
+            animation: pulse 1.5s infinite alternate;
         }
         #no {
             background-color: white;
@@ -51,7 +53,7 @@
             position: relative;
             width: 120px;
             height: 120px;
-            animation: bounce-in 1s ease-in-out forwards;
+            animation: fadeIn 2s ease-in-out;
         }
         .box-lid, .box-base {
             position: absolute;
@@ -70,29 +72,59 @@
         .hidden {
             display: none;
         }
-        /* Celebration Animation */
-        .celebration {
+        /* Confetti */
+        .confetti {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 50px;
-            color: gold;
-            display: none;
-            animation: pop 0.6s ease-in-out;
+            width: 8px;
+            height: 8px;
+            background-color: gold;
+            opacity: 0;
+            animation: confetti-fall 2s ease-out forwards;
+        }
+        /* Falling Hearts */
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 20px;
+            opacity: 0.8;
+            animation: fall 5s linear infinite;
         }
         /* Keyframes */
-        @keyframes bounce-in {
-            0% { transform: scale(0.5); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1); }
         }
-        @keyframes pop {
-            0% { transform: scale(0); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        @keyframes confetti-fall {
+            0% { opacity: 1; transform: translateY(-10px) rotate(0deg); }
+            100% { opacity: 0; transform: translateY(100vh) rotate(720deg); }
+        }
+        @keyframes fall {
+            0% { top: -10%; opacity: 0.8; }
+            100% { top: 100vh; opacity: 0; }
         }
     </style>
 </head>
 <body>
+    <!-- Falling Hearts -->
+    <script>
+        for (let i = 0; i < 10; i++) {
+            let heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            document.body.appendChild(heart);
+        }
+    </script>
+
     <div class="box-container" id="box">
         <div class="box-lid"></div>
         <div class="box-base"></div>
@@ -105,8 +137,6 @@
             <button id="no">No</button>
         </div>
     </div>
-
-    <div class="celebration" id="celebration">🎉 Yay! 🎉</div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -131,7 +161,16 @@
 
         document.getElementById("yes").addEventListener("click", function() {
             document.getElementById("question").classList.add("hidden");
-            document.getElementById("celebration").style.display = "block";
+
+            // Show celebration
+            for (let i = 0; i < 30; i++) {
+                let confetti = document.createElement("div");
+                confetti.classList.add("confetti");
+                confetti.style.backgroundColor = ["gold", "red", "pink"][Math.floor(Math.random() * 3)];
+                confetti.style.left = Math.random() * 100 + "vw";
+                confetti.style.animationDuration = Math.random() * 2 + 1 + "s";
+                document.body.appendChild(confetti);
+            }
         });
     </script>
 </body>
