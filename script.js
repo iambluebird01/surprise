@@ -46,6 +46,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Change message text
         questionText.innerHTML = "Yay! I Love You! ❤️";
+        
+        // Hide buttons
+        yesButton.style.display = "none";
+        noButton.style.display = "none";
 
         let celebrationDuration = 30000; // 30 seconds celebration
         let startTime = Date.now();
