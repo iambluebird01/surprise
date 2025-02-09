@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const noButton = document.getElementById("no");
     const yesButton = document.getElementById("yes");
     const heartsContainer = document.getElementById("hearts-container");
+    const loveMusic = document.getElementById("loveMusic");
 
     // Click to open the gift box
     giftBox.addEventListener("click", function() {
@@ -39,17 +40,31 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // "Yes" button triggers celebration
     yesButton.addEventListener("click", function() {
-        document.body.style.background = "gold";
+        document.body.style.animation = "backgroundPulse 3s infinite";
+        loveMusic.play(); // Play romantic song
 
-        for (let i = 0; i < 10; i++) {
-            let confetti = document.createElement("div");
-            confetti.classList.add("confetti");
-            confetti.innerHTML = "🎉🎊💖";
-            confetti.style.left = Math.random() * 100 + "vw";
-            confetti.style.top = Math.random() * 100 + "vh";
-            document.body.appendChild(confetti);
+        let celebrationDuration = 30000; // 30 seconds celebration
+        let startTime = Date.now();
 
-            setTimeout(() => confetti.remove(), 2000);
+        function celebration() {
+            if (Date.now() - startTime < celebrationDuration) {
+                for (let i = 0; i < 5; i++) {
+                    let confetti = document.createElement("div");
+                    confetti.classList.add("confetti");
+                    confetti.innerHTML = "🎉🎊💖";
+                    confetti.style.left = Math.random() * 100 + "vw";
+                    confetti.style.top = Math.random() * 100 + "vh";
+                    document.body.appendChild(confetti);
+
+                    setTimeout(() => confetti.remove(), 2000);
+                }
+                setTimeout(celebration, 500); // Keep adding confetti
+            } else {
+                document.body.style.animation = "none"; // Stop background pulse
+                loveMusic.pause();
+            }
         }
+        
+        celebration();
     });
 });
