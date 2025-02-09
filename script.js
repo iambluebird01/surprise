@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const yesButton = document.getElementById("yes");
     const heartsContainer = document.getElementById("hearts-container");
     const loveMusic = document.getElementById("loveMusic");
+    const questionText = document.getElementById("question-text");
 
     // Click to open the gift box
     giftBox.addEventListener("click", function() {
@@ -42,6 +43,9 @@ document.addEventListener("DOMContentLoaded", function() {
     yesButton.addEventListener("click", function() {
         document.body.style.animation = "backgroundPulse 3s infinite";
         loveMusic.play(); // Play romantic song
+
+        // Change message text
+        questionText.innerHTML = "Yay! I Love You! ❤️";
 
         let celebrationDuration = 30000; // 30 seconds celebration
         let startTime = Date.now();
