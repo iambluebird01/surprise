@@ -4,27 +4,12 @@ document.addEventListener("DOMContentLoaded", function() {
     const message = document.getElementById("message");
     const noButton = document.getElementById("no");
     const yesButton = document.getElementById("yes");
-    const heartsContainer = document.getElementById("hearts-container");
     const loveMusic = document.getElementById("loveMusic");
     const questionText = document.getElementById("question-text");
 
     // Click to open the gift box
     giftBox.addEventListener("click", function() {
         lid.style.transform = "rotateX(180deg)";
-
-        // Floating Hearts
-        for (let i = 0; i < 20; i++) {
-            let heart = document.createElement("div");
-            heart.classList.add("heart");
-            heart.innerHTML = "❤️";
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.animationDuration = Math.random() * 2 + 2 + "s";
-            heartsContainer.appendChild(heart);
-
-            setTimeout(() => {
-                heart.remove();
-            }, 4000);
-        }
 
         setTimeout(() => {
             message.classList.remove("hidden");
