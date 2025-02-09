@@ -30,9 +30,9 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // "No" button runs away
-    noButton.addEventListener("mouseover", function() {
-        let x = Math.random() * 300 - 150;
-        let y = Math.random() * 200 - 100;
+    noButton.addEventListener("click", function() {
+        let x = Math.random() * 300 - 150; // Random X position
+        let y = Math.random() * 200 - 100; // Random Y position
         noButton.style.transform = `translate(${x}px, ${y}px)`;
     });
 
