@@ -1,0 +1,109 @@
+body {
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #ff4e50, #fc913a);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Floating Hearts */
+.heart {
+    position: absolute;
+    color: red;
+    font-size: 25px;
+    opacity: 0.8;
+    animation: fall 5s linear infinite;
+}
+
+@keyframes fall {
+    0% { top: -10%; opacity: 1; }
+    100% { top: 100vh; opacity: 0; }
+}
+
+/* Surprise Box */
+.box-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.box-lid, .box-base {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background: red;
+    border-radius: 10px;
+}
+
+.box-lid {
+    top: 0;
+    transition: transform 0.8s ease-in-out;
+}
+
+.box-base {
+    bottom: 0;
+}
+
+/* Question Container */
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+/* Buttons */
+.buttons {
+    margin-top: 20px;
+    position: relative;
+}
+
+button {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#yes {
+    background-color: red;
+    color: white;
+    animation: pulse 1.5s infinite alternate;
+}
+
+#no {
+    background-color: white;
+    color: black;
+    position: absolute;
+}
+
+/* Confetti */
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: gold;
+    opacity: 0;
+    animation: confetti-fall 2s ease-out forwards;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+
+@keyframes confetti-fall {
+    0% { opacity: 1; transform: translateY(-10px) rotate(0deg); }
+    100% { opacity: 0; transform: translateY(100vh) rotate(720deg); }
+}

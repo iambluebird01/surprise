@@ -4,124 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Be My Valentine?</title>
-    <style>
-        body {
-            text-align: center;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom, #ff758c, #ff7eb3);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Floating Hearts */
-        .heart {
-            position: absolute;
-            color: red;
-            font-size: 20px;
-            opacity: 0.8;
-            animation: fall 5s linear infinite;
-        }
-
-        @keyframes fall {
-            0% { top: -10%; opacity: 0.8; }
-            100% { top: 100vh; opacity: 0; }
-        }
-
-        /* Surprise Box */
-        .box-container {
-            position: relative;
-            width: 150px;
-            height: 150px;
-            animation: fadeIn 2s ease-in-out;
-        }
-        .box-lid, .box-base {
-            position: absolute;
-            width: 100%;
-            height: 50%;
-            background: red;
-            border-radius: 10px;
-        }
-        .box-lid {
-            top: 0;
-            transition: transform 0.8s ease-in-out;
-        }
-        .box-base {
-            bottom: 0;
-        }
-
-        /* Question Container */
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-        }
-
-        /* Buttons */
-        .buttons {
-            margin-top: 20px;
-            position: relative;
-        }
-        button {
-            font-size: 18px;
-            padding: 10px 20px;
-            margin: 10px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        #yes {
-            background-color: red;
-            color: white;
-            animation: pulse 1.5s infinite alternate;
-        }
-        #no {
-            background-color: white;
-            color: black;
-            position: absolute;
-        }
-
-        /* Confetti */
-        .confetti {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background-color: gold;
-            opacity: 0;
-            animation: confetti-fall 2s ease-out forwards;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
-        }
-
-        @keyframes confetti-fall {
-            0% { opacity: 1; transform: translateY(-10px) rotate(0deg); }
-            100% { opacity: 0; transform: translateY(100vh) rotate(720deg); }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <script>
-        // Falling Hearts
-        for (let i = 0; i < 10; i++) {
-            let heart = document.createElement("div");
-            heart.classList.add("heart");
-            heart.innerHTML = "❤️";
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
-            document.body.appendChild(heart);
-        }
-    </script>
+    <script src="hearts.js"></script>
 
     <div class="box-container" id="box">
         <div class="box-lid"></div>
@@ -136,40 +22,6 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(() => {
-                document.querySelector(".box-lid").style.transform = "rotateX(150deg)";
-                setTimeout(() => {
-                    document.getElementById("box").classList.add("hidden");
-                    document.getElementById("question").classList.remove("hidden");
-                    document.getElementById("question").style.opacity = "1";
-                    document.getElementById("question").style.transform = "translateY(0)";
-                }, 1000);
-            }, 2000);
-        });
-
-        const noButton = document.getElementById("no");
-        noButton.addEventListener("mouseover", function() {
-            const x = Math.random() * (window.innerWidth - 100);
-            const y = Math.random() * (window.innerHeight - 100);
-            noButton.style.left = `${x}px`;
-            noButton.style.top = `${y}px`;
-        });
-
-        document.getElementById("yes").addEventListener("click", function() {
-            document.getElementById("question").classList.add("hidden");
-
-            // Show celebration
-            for (let i = 0; i < 30; i++) {
-                let confetti = document.createElement("div");
-                confetti.classList.add("confetti");
-                confetti.style.backgroundColor = ["gold", "red", "pink"][Math.floor(Math.random() * 3)];
-                confetti.style.left = Math.random() * 100 + "vw";
-                confetti.style.animationDuration = Math.random() * 2 + 1 + "s";
-                document.body.appendChild(confetti);
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
