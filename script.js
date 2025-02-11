@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
         "Are you really, really sure? 😳"
     ];
 
-    // Initially hide everything except the gift box
+    // Hide everything except the gift box
     message.classList.add("hidden");
     loading.classList.add("hidden");
 
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
             setTimeout(() => {
                 message.classList.remove("hidden"); // Show first question
                 questionText.innerHTML = questions[questionIndex];
-            }, 1000); // Delay for a smooth transition
+            }, 1000); 
         }, 800);
     });
 
@@ -37,20 +37,20 @@ document.addEventListener("DOMContentLoaded", function() {
         questionIndex++;
 
         if (questionIndex < questions.length) {
-            questionText.innerHTML = questions[questionIndex]; // Show next question
+            questionText.innerHTML = questions[questionIndex]; 
             
             // Reset "No" button beside "Yes"
             noButton.style.transform = "translate(0, 0)";
         } else {
             message.classList.add("hidden"); // Hide questions
             loading.classList.remove("hidden"); // Show loading screen
-            loveMusic.play(); // Play music
+            loveMusic.play(); 
 
             setTimeout(() => {
                 loading.classList.add("hidden"); // Hide loading screen
                 message.classList.remove("hidden"); // Show final question
                 questionText.innerHTML = "Will you be my Valentine? ❤️";
-            }, 30000); // 30 seconds delay
+            }, 30000);
         }
     });
 
