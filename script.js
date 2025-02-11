@@ -48,10 +48,11 @@ document.addEventListener("DOMContentLoaded", function() {
             message.classList.add("hidden");
             loading.classList.remove("hidden");
 
+            // Set the loading screen to last **20 seconds (20000ms)**
             setTimeout(() => {
                 loading.classList.add("hidden");
                 finalQuestion.classList.remove("hidden");
-            }, 3000);
+            }, 20000);
         }
     });
 
