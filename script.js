@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
         "Are you really, really sure? 😳"
     ];
 
-    // Hide everything except the gift box
+    // Hide everything except the gift box initially
     message.classList.add("hidden");
     loading.classList.add("hidden");
 
@@ -25,51 +25,50 @@ document.addEventListener("DOMContentLoaded", function() {
 
         setTimeout(() => {
             giftBox.style.display = "none"; // Hide gift box
-            setTimeout(() => {
-                message.classList.remove("hidden"); // Show first question
-                questionText.innerHTML = questions[questionIndex];
-            }, 1000); 
-        }, 800);
+            message.classList.remove("hidden"); // Show first question
+            questionText.innerHTML = questions[questionIndex];
+        }, 1000);
     });
 
-    // Handle clicking "Yes" through the questions
+    // Handle clicking "Yes" to go through the questions
     yesButton.addEventListener("click", function() {
         questionIndex++;
 
         if (questionIndex < questions.length) {
-            questionText.innerHTML = questions[questionIndex]; 
-            
-            // Reset "No" button beside "Yes"
+            questionText.innerHTML = questions[questionIndex]; // Show next question
+
+            // Reset "No" button position
             noButton.style.transform = "translate(0, 0)";
         } else {
-            message.classList.add("hidden"); // Hide questions
-            loading.classList.remove("hidden"); // Show loading screen
-            loveMusic.play(); 
+            // Hide the question box and show the loading screen
+            message.classList.add("hidden");
+            loading.classList.remove("hidden");
+            loveMusic.play(); // Play background music
 
             setTimeout(() => {
                 loading.classList.add("hidden"); // Hide loading screen
                 message.classList.remove("hidden"); // Show final question
                 questionText.innerHTML = "Will you be my Valentine? ❤️";
-            }, 30000);
+            }, 5000); // 5 seconds delay for the loading effect
         }
     });
 
-    // "No" button runs away when clicked (not hover)
+    // "No" button runs away when clicked
     noButton.addEventListener("click", function() {
-        let x = Math.random() * 300 - 150; 
-        let y = Math.random() * 200 - 100; 
+        let x = Math.random() * 300 - 150; // Random position
+        let y = Math.random() * 200 - 100;
         noButton.style.transform = `translate(${x}px, ${y}px)`;
     });
 
-    // Final Yes response triggers celebration
+    // Final "Yes" triggers celebration
     yesButton.addEventListener("click", function() {
-        if (questionIndex === questions.length) { 
+        if (questionIndex === questions.length) {
             document.body.style.animation = "backgroundPulse 3s infinite";
-            questionText.innerHTML = "Yay! I Love You! ❤️"; 
+            questionText.innerHTML = "Yay! I Love You! ❤️";
             yesButton.style.display = "none";
             noButton.style.display = "none";
 
-            let celebrationDuration = 30000; 
+            let celebrationDuration = 10000; // Celebration lasts 10 seconds
             let startTime = Date.now();
 
             function celebration() {
