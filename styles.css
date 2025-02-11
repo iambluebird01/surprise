@@ -10,21 +10,21 @@ body {
     margin: 0;
 }
 
-/* Gift Box Styles */
-#gift-box {
+/* Gift Box */
+.gift-box {
     width: 150px;
     height: 150px;
     background: white;
-    position: absolute;
-    bottom: 50px;
-    cursor: pointer;
+    position: relative;
     border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* Lid */
 .lid {
     width: 160px;
     height: 30px;
@@ -32,41 +32,44 @@ body {
     position: absolute;
     top: -30px;
     border-radius: 5px;
-    transition: 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out;
 }
 
-/* When clicked, the lid flips */
+/* Open lid animation */
 .lid.open {
     transform: rotateX(180deg);
 }
 
-/* Question Box */
-#message {
-    position: absolute;
-    top: 60%;  /* Move it lower */
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    display: none;  /* Initially hidden */
-}
-
-/* Hidden by default */
+/* Hidden elements */
 .hidden {
     display: none;
 }
 
-/* Button Container */
-.button-container {
+/* Question Message */
+#message {
+    width: 400px;
+    height: 100px;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Button Styles */
+.buttons {
     display: flex;
     justify-content: center;
     gap: 20px;
     margin-top: 20px;
 }
 
-/* Yes and No Buttons */
 button {
     font-size: 18px;
     padding: 10px 20px;
@@ -76,25 +79,25 @@ button {
     transition: all 0.3s ease;
 }
 
-/* Yes Button */
 #yes {
     background-color: #ff4081;
     color: white;
 }
 
-/* No Button */
 #no {
     background-color: #ccc;
     color: black;
     position: relative;
 }
 
-/* Runaway effect - No button moves when clicked */
-#no:active {
-    transform: translate(50px, 50px);
+/* Runaway effect - No button moves */
+#no:hover {
+    position: absolute;
+    left: calc(50% + 100px);
+    top: calc(50% + 50px);
 }
 
-/* Loading screen animation */
+/* Loading Animation */
 #loading {
     font-size: 22px;
     font-weight: bold;
@@ -113,22 +116,14 @@ button {
     100% { opacity: 0.3; }
 }
 
-/* Celebration animation */
-@keyframes confetti-fall {
-    0% { transform: translateY(-100vh) rotate(0deg); }
-    100% { transform: translateY(100vh) rotate(360deg); }
-}
-
-/* Confetti */
+/* Confetti Celebration */
 .confetti {
     position: fixed;
     font-size: 30px;
     animation: confetti-fall 2s linear infinite;
 }
 
-/* Background pulse when celebrating */
-@keyframes backgroundPulse {
-    0% { background-color: #ff758c; }
-    50% { background-color: #ff5f6d; }
-    100% { background-color: #ff758c; }
+@keyframes confetti-fall {
+    0% { transform: translateY(-100vh) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
 }

@@ -10,101 +10,66 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let questionIndex = 0;
     const questions = [
-        "Do you love me, Stacy Guerrero? ❤️",
+        "Do you love me? ❤️",
         "Are you sure? 🤔",
         "Are you really, really sure? 😳"
     ];
 
-    // Initially, only the gift box should be visible
+    // Hide everything except the box
     message.classList.add("hidden");
     loading.classList.add("hidden");
 
-    // Click to open the gift box
+    // Open box
     giftBox.addEventListener("click", function() {
-        lid.classList.add("open"); // Flip the lid
+        lid.classList.add("open");
 
         setTimeout(() => {
-            giftBox.style.display = "none"; // Hide the gift box completely
-            message.classList.remove("hidden"); // Show the first question
+            giftBox.style.display = "none";
+            message.classList.remove("hidden");
             questionText.innerHTML = questions[questionIndex];
-        }, 1000);
+        }, 800);
     });
-    document.addEventListener("DOMContentLoaded", function() {
-        const giftBox = document.getElementById("gift-box");
-        const lid = document.querySelector(".lid");
-        const message = document.getElementById("message");
-        
-        message.style.display = "none"; // Ensure message is hidden at start
-    
-        giftBox.addEventListener("click", function() {
-            lid.classList.add("open");  // Animate the lid
-    
-            setTimeout(() => {
-                giftBox.style.display = "none"; // Hide the gift box
-                message.style.display = "block"; // Show the question
-            }, 1000);  // Wait 1s after the lid opens
-        });
-    });
-    // Handle clicking "Yes" through the questions
+
+    // Handle "Yes" button
     yesButton.addEventListener("click", function() {
         questionIndex++;
 
         if (questionIndex < questions.length) {
-            questionText.innerHTML = questions[questionIndex]; // Show next question
-            noButton.style.transform = "translate(0, 0)"; // Reset "No" button position
+            questionText.innerHTML = questions[questionIndex];
         } else {
-            // Hide the question box and show the loading screen
             message.classList.add("hidden");
             loading.classList.remove("hidden");
-            loveMusic.play(); // Play background music
+            loveMusic.play();
 
             setTimeout(() => {
-                loading.classList.add("hidden"); // Hide loading screen
-                message.classList.remove("hidden"); // Show final question
+                loading.classList.add("hidden");
+                message.classList.remove("hidden");
                 questionText.innerHTML = "Will you be my Valentine? ❤️";
-                
-                // Move final question lower to avoid overlap
-                message.style.top = "55%"; // Adjust position lower
-            }, 5000); // 5 seconds delay for loading effect
+            }, 5000);
         }
     });
 
-    // "No" button runs away when clicked
-    noButton.addEventListener("click", function() {
-        let x = Math.random() * 300 - 150; // Random position
+    // Make "No" button run away
+    noButton.addEventListener("mouseover", function() {
+        let x = Math.random() * 300 - 150;
         let y = Math.random() * 200 - 100;
         noButton.style.transform = `translate(${x}px, ${y}px)`;
     });
 
-    // Final "Yes" response triggers celebration
+    // Celebration on final "Yes"
     yesButton.addEventListener("click", function() {
         if (questionIndex === questions.length) {
             document.body.style.animation = "backgroundPulse 3s infinite";
-            questionText.innerHTML = "Yay! I Love You! ❤️";
-            yesButton.style.display = "none";
-            noButton.style.display = "none";
+            questionText.innerHTML = "Yay! I Love You! ❤️"; 
 
-            let celebrationDuration = 10000; // Celebration lasts 10 seconds
-            let startTime = Date.now();
-
-            function celebration() {
-                if (Date.now() - startTime < celebrationDuration) {
-                    for (let i = 0; i < 5; i++) {
-                        let confetti = document.createElement("div");
-                        confetti.classList.add("confetti");
-                        confetti.innerHTML = "🎉🎊💖";
-                        confetti.style.left = Math.random() * 100 + "vw";
-                        confetti.style.top = Math.random() * 100 + "vh";
-                        document.body.appendChild(confetti);
-                        setTimeout(() => confetti.remove(), 2000);
-                    }
-                    setTimeout(celebration, 500);
-                } else {
-                    document.body.style.animation = "none";
-                    loveMusic.pause();
-                }
-            }
-            celebration();
+            setInterval(() => {
+                let confetti = document.createElement("div");
+                confetti.classList.add("confetti");
+                confetti.innerHTML = "🎉";
+                confetti.style.left = Math.random() * 100 + "vw";
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 2000);
+            }, 500);
         }
     });
 });
