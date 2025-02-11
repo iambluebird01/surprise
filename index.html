@@ -3,42 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Surprise</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Be My Valentine?</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- Container -->
-    <div class="container">
-        <!-- Gift Box -->
-        <div class="gift-box" id="gift-box">
-            <div class="lid"></div>
-            <div class="box"></div>
-            <div class="ribbon"></div>
-        </div>
-
-        <!-- Loading Animation (Initially Hidden) -->
-        <div class="loading hidden" id="loading">
-            <p>Loading Love...</p>
-            <div class="heart-loader"></div>
-        </div>
-
-        <!-- Question Message (Initially Hidden) -->
-        <div class="message hidden" id="message">
-            <p class="fade-in-text" id="question-text">Do you love me? ❤️</p>
-            <div class="buttons">
-                <button id="yes">Yes</button>
-                <button id="no">No</button>
-            </div>
-        </div>
+    <div id="gift-box">
+        <div class="lid"></div>
+        <div class="box"></div>
     </div>
 
-    <!-- Love Music -->
-    <audio id="loveMusic" loop>
-        <source src="love-song.mp3" type="audio/mpeg">
-    </audio>
+    <div id="message" class="hidden">
+        <p id="question-text"></p>
+        <button id="yes">Yes</button>
+        <button id="no">No</button>
+    </div>
+
+    <audio id="loveMusic" src="love-song.mp3"></audio>
 
     <script src="script.js"></script>
-
 </body>
 </html>
