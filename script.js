@@ -1,87 +1,60 @@
 document.addEventListener("DOMContentLoaded", function() {
     const giftBox = document.getElementById("gift-box");
-    const lid = document.querySelector(".lid");
-    const questionContainer = document.getElementById("question-container");
+    const lid = document.getElementById("lid");
+    const loading = document.getElementById("loading");
+    const message = document.getElementById("message");
     const noButton = document.getElementById("no");
     const yesButton = document.getElementById("yes");
-    const loadingScreen = document.getElementById("loading-screen");
-    const celebrationScreen = document.getElementById("celebration");
     const loveMusic = document.getElementById("loveMusic");
+    const celebration = document.getElementById("celebration");
     const questionText = document.getElementById("question-text");
 
     let questionIndex = 0;
     const questions = [
-        "Do you like me? ❤️",
+        "Do you love me? ❤️",
         "Are you sure? 🤔",
-        "Are you really sure? 😳",
-        "Will you be my Valentine? ❤️"
+        "Are you really, really sure? 😳"
     ];
 
-    // Hide everything except the box
-    questionContainer.classList.add("hidden");
-    loadingScreen.classList.add("hidden");
-    celebrationScreen.classList.add("hidden");
+    // Show only the box at the start
+    message.classList.add("hidden");
+    loading.classList.add("hidden");
+    celebration.classList.add("hidden");
 
-    // Open box
+    // Click to open the gift box
     giftBox.addEventListener("click", function() {
         lid.classList.add("open");
 
         setTimeout(() => {
             giftBox.style.display = "none";
-            questionContainer.classList.remove("hidden");
+            message.classList.remove("hidden");
             questionText.innerHTML = questions[questionIndex];
         }, 800);
     });
 
-    // Handle "Yes" button
+    // Handle clicking "Yes" through the questions
     yesButton.addEventListener("click", function() {
         questionIndex++;
 
-        if (questionIndex < questions.length - 1) {
+        if (questionIndex < questions.length) {
             questionText.innerHTML = questions[questionIndex];
-            resetNoButton(); // Reset No button after each question
-        } else if (questionIndex === questions.length - 1) {
-            // Show loading screen before final question
-            questionContainer.classList.add("hidden");
-            loadingScreen.classList.remove("hidden");
+            noButton.style.transform = "translate(0, 0)";
+        } else {
+            message.classList.add("hidden");
+            loading.classList.remove("hidden");
 
             setTimeout(() => {
-                loadingScreen.classList.add("hidden");
-                questionContainer.classList.remove("hidden");
-                questionText.innerHTML = questions[questionIndex];
-            }, 1500);
-        } else {
-            startCelebration();
+                loading.classList.add("hidden");
+                celebration.classList.remove("hidden");
+                loveMusic.play();
+            }, 3000);
         }
     });
 
-    // Move "No" button when clicked
+    // "No" button moves when clicked
     noButton.addEventListener("click", function() {
         let x = Math.random() * 300 - 150;
         let y = Math.random() * 200 - 100;
         noButton.style.transform = `translate(${x}px, ${y}px)`;
     });
-
-    // Reset "No" button to original position
-    function resetNoButton() {
-        noButton.style.transform = "translate(0, 0)";
-    }
-
-    // Celebration function
-    function startCelebration() {
-        questionContainer.classList.add("hidden");
-        celebrationScreen.classList.remove("hidden");
-        loveMusic.play();
-
-        setInterval(() => {
-            let confetti = document.createElement("div");
-            confetti.classList.add("confetti");
-            confetti.innerHTML = "❤️";
-            confetti.style.left = Math.random() * 100 + "vw";
-            confetti.style.top = "-20px";
-            document.body.appendChild(confetti);
-
-            setTimeout(() => confetti.remove(), 2000);
-        }, 200);
-    }
 });

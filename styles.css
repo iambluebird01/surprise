@@ -1,109 +1,138 @@
-/* Background */
+/* General Styles */
 body {
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    text-align: center;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     overflow: hidden;
-    position: relative;
+    margin: 0;
 }
 
-/* Hide elements initially */
-.hidden {
-    display: none;
+/* Gift Box Styles */
+.gift-box-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-/* Gift Box */
-#gift-box {
-    position: relative;
-    width: 140px;
-    height: 140px;
+.gift-box {
+    width: 150px;
+    height: 150px;
     background: white;
-    margin: 180px auto;
-    cursor: pointer;
+    position: relative;
     border-radius: 10px;
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 }
 
 .lid {
-    position: absolute;
-    top: -30px;
-    width: 140px;
+    width: 160px;
     height: 30px;
     background: red;
+    position: absolute;
+    top: -30px;
+    left: -5px;
     border-radius: 5px;
     transition: transform 0.5s ease-in-out;
 }
 
 .lid.open {
-    transform: rotate(-20deg) translateY(-40px);
+    transform: translateY(-50px) rotateX(180deg);
 }
 
 /* Question Box */
-#question-container {
+.message {
+    width: 400px;
+    height: 120px;
     background: white;
-    padding: 25px;
-    border-radius: 15px;
-    display: inline-block;
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
-    margin-top: 50px;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Buttons */
+/* Hidden initially */
+.hidden {
+    display: none;
+}
+
+/* Button Styling */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
 button {
-    padding: 12px 25px;
-    margin: 10px;
+    font-size: 18px;
+    padding: 10px 20px;
     border: none;
     cursor: pointer;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: all 0.3s;
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
+/* Yes Button */
 #yes {
-    background: #ff4081;
+    background-color: #ff4081;
     color: white;
-    box-shadow: 0px 3px 8px rgba(255, 64, 129, 0.3);
 }
 
-#yes:hover {
-    background: #f50057;
-}
-
+/* No Button */
 #no {
-    background: gray;
-    color: white;
+    background-color: #ccc;
+    color: black;
     position: relative;
-    transition: transform 0.3s ease;
 }
 
-#no:hover {
-    background: darkgray;
+/* No button moves when clicked */
+#no:active {
+    transform: translate(50px, 50px);
 }
 
-/* Loading Screen */
-#loading-screen {
-    font-size: 24px;
+/* Loading Animation */
+.loading {
+    font-size: 22px;
     font-weight: bold;
-}
-
-/* Celebration Screen */
-#celebration {
-    font-size: 26px;
-    font-weight: bold;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    animation: bounce 1s infinite alternate;
-}
-
-/* Heart Confetti */
-@keyframes fall {
-    0% { transform: translateY(-20px); opacity: 1; }
-    100% { transform: translateY(100vh); opacity: 0; }
-}
-
-.confetti {
+    text-align: center;
     position: absolute;
-    font-size: 24px;
-    color: red;
-    animation: fall 3s linear forwards;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 1s infinite;
+}
+
+/* Pulsing animation */
+@keyframes pulse {
+    0% { opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { opacity: 0.3; }
+}
+
+/* Celebration Animation */
+.celebration {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+}
+
+@keyframes confetti-fall {
+    0% { transform: translateY(-100vh) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
 }
