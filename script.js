@@ -15,9 +15,6 @@ document.addEventListener("DOMContentLoaded", function() {
         "Are you really, really sure? 😳"
     ];
 
-    // Store No Button's last position
-    let noButtonPosition = { x: 0, y: 0 };
-
     // Click to open the gift box
     giftBox.addEventListener("click", function() {
         lid.style.transform = "rotateX(180deg)";
@@ -35,6 +32,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (questionIndex < questions.length) {
             questionText.innerHTML = questions[questionIndex]; // Show next question
+            
+            // Reset "No" button beside "Yes"
+            noButton.style.transform = "translate(0, 0)";
         } else {
             message.classList.add("hidden"); // Hide questions
             loading.classList.remove("hidden"); // Show loading screen
@@ -48,11 +48,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // "No" button runs away when clicked (but keeps its position)
+    // "No" button runs away when clicked
     noButton.addEventListener("click", function() {
-        noButtonPosition.x += Math.random() * 300 - 150;
-        noButtonPosition.y += Math.random() * 200 - 100;
-        noButton.style.transform = `translate(${noButtonPosition.x}px, ${noButtonPosition.y}px)`;
+        let x = Math.random() * 300 - 150; 
+        let y = Math.random() * 200 - 100; 
+        noButton.style.transform = `translate(${x}px, ${y}px)`;
     });
 
     // Final Yes response triggers celebration
