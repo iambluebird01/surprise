@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // "No" button runs away when clicked
+    // "No" button runs away when clicked (not hover)
     noButton.addEventListener("click", function() {
         let x = Math.random() * 300 - 150; 
         let y = Math.random() * 200 - 100; 
