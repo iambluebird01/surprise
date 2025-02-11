@@ -29,7 +29,22 @@ document.addEventListener("DOMContentLoaded", function() {
             questionText.innerHTML = questions[questionIndex];
         }, 1000);
     });
-
+    document.addEventListener("DOMContentLoaded", function() {
+        const giftBox = document.getElementById("gift-box");
+        const lid = document.querySelector(".lid");
+        const message = document.getElementById("message");
+        
+        message.style.display = "none"; // Ensure message is hidden at start
+    
+        giftBox.addEventListener("click", function() {
+            lid.classList.add("open");  // Animate the lid
+    
+            setTimeout(() => {
+                giftBox.style.display = "none"; // Hide the gift box
+                message.style.display = "block"; // Show the question
+            }, 1000);  // Wait 1s after the lid opens
+        });
+    });
     // Handle clicking "Yes" through the questions
     yesButton.addEventListener("click", function() {
         questionIndex++;
