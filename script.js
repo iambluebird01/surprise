@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
         "Are you really, really sure? 😳"
     ];
 
-    // Hide everything except the gift box initially
+    // Initially, only the gift box should be visible
     message.classList.add("hidden");
     loading.classList.add("hidden");
 
@@ -24,21 +24,19 @@ document.addEventListener("DOMContentLoaded", function() {
         lid.classList.add("open"); // Flip the lid
 
         setTimeout(() => {
-            giftBox.style.display = "none"; // Hide gift box
-            message.classList.remove("hidden"); // Show first question
+            giftBox.style.display = "none"; // Hide the gift box completely
+            message.classList.remove("hidden"); // Show the first question
             questionText.innerHTML = questions[questionIndex];
         }, 1000);
     });
 
-    // Handle clicking "Yes" to go through the questions
+    // Handle clicking "Yes" through the questions
     yesButton.addEventListener("click", function() {
         questionIndex++;
 
         if (questionIndex < questions.length) {
             questionText.innerHTML = questions[questionIndex]; // Show next question
-
-            // Reset "No" button position
-            noButton.style.transform = "translate(0, 0)";
+            noButton.style.transform = "translate(0, 0)"; // Reset "No" button position
         } else {
             // Hide the question box and show the loading screen
             message.classList.add("hidden");
@@ -49,7 +47,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 loading.classList.add("hidden"); // Hide loading screen
                 message.classList.remove("hidden"); // Show final question
                 questionText.innerHTML = "Will you be my Valentine? ❤️";
-            }, 5000); // 5 seconds delay for the loading effect
+                
+                // Move final question lower to avoid overlap
+                message.style.top = "55%"; // Adjust position lower
+            }, 5000); // 5 seconds delay for loading effect
         }
     });
 
@@ -60,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
         noButton.style.transform = `translate(${x}px, ${y}px)`;
     });
 
-    // Final "Yes" triggers celebration
+    // Final "Yes" response triggers celebration
     yesButton.addEventListener("click", function() {
         if (questionIndex === questions.length) {
             document.body.style.animation = "backgroundPulse 3s infinite";
