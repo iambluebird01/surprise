@@ -3,11 +3,15 @@ document.addEventListener("DOMContentLoaded", function() {
     const lid = document.getElementById("lid");
     const loading = document.getElementById("loading");
     const message = document.getElementById("message");
-    const noButton = document.getElementById("no");
-    const yesButton = document.getElementById("yes");
-    const loveMusic = document.getElementById("loveMusic");
+    const finalQuestion = document.getElementById("final-question");
     const celebration = document.getElementById("celebration");
     const questionText = document.getElementById("question-text");
+    const loveMusic = document.getElementById("loveMusic");
+
+    const yesButton = document.getElementById("yes");
+    const noButton = document.getElementById("no");
+    const finalYesButton = document.getElementById("final-yes");
+    const finalNoButton = document.getElementById("final-no");
 
     let questionIndex = 0;
     const questions = [
@@ -16,9 +20,10 @@ document.addEventListener("DOMContentLoaded", function() {
         "Are you really, really sure? 😳"
     ];
 
-    // Show only the box at the start
+    // Initial state
     message.classList.add("hidden");
     loading.classList.add("hidden");
+    finalQuestion.classList.add("hidden");
     celebration.classList.add("hidden");
 
     // Click to open the gift box
@@ -45,16 +50,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
             setTimeout(() => {
                 loading.classList.add("hidden");
-                celebration.classList.remove("hidden");
-                loveMusic.play();
+                finalQuestion.classList.remove("hidden");
             }, 3000);
         }
     });
 
+    // Handle final Yes button click
+    finalYesButton.addEventListener("click", function() {
+        finalQuestion.classList.add("hidden");
+        celebration.classList.remove("hidden");
+        loveMusic.play();
+    });
+
     // "No" button moves when clicked
-    noButton.addEventListener("click", function() {
+    function moveNoButton(noBtn) {
         let x = Math.random() * 300 - 150;
         let y = Math.random() * 200 - 100;
-        noButton.style.transform = `translate(${x}px, ${y}px)`;
-    });
+        noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    noButton.addEventListener("click", () => moveNoButton(noButton));
+    finalNoButton.addEventListener("click", () => moveNoButton(finalNoButton));
 });

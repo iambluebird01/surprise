@@ -86,20 +86,20 @@ button {
 }
 
 /* Yes Button */
-#yes {
+#yes, #final-yes {
     background-color: #ff4081;
     color: white;
 }
 
 /* No Button */
-#no {
+#no, #final-no {
     background-color: #ccc;
     color: black;
     position: relative;
 }
 
 /* No button moves when clicked */
-#no:active {
+#no:active, #final-no:active {
     transform: translate(50px, 50px);
 }
 
@@ -130,9 +130,4 @@ button {
     left: 50%;
     transform: translate(-50%, -50%);
     color: black;
-}
-
-@keyframes confetti-fall {
-    0% { transform: translateY(-100vh) rotate(0deg); }
-    100% { transform: translateY(100vh) rotate(360deg); }
 }
