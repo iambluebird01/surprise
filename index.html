@@ -7,15 +7,29 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- Gift Box -->
     <div id="gift-box">
         <div class="lid"></div>
         <div class="box"></div>
     </div>
 
-    <div id="message" class="hidden">
+    <!-- Questions Container -->
+    <div id="question-container" class="hidden">
         <p id="question-text"></p>
         <button id="yes">Yes</button>
         <button id="no">No</button>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="hidden">
+        <p>Loading...</p>
+    </div>
+
+    <!-- Celebration Screen -->
+    <div id="celebration" class="hidden">
+        <h1>Yay! I Love You! ❤️</h1>
+        <div id="confetti-container"></div>
     </div>
 
     <audio id="loveMusic" src="love-song.mp3"></audio>

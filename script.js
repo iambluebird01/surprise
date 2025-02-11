@@ -1,9 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
     const giftBox = document.getElementById("gift-box");
     const lid = document.querySelector(".lid");
-    const message = document.getElementById("message");
+    const questionContainer = document.getElementById("question-container");
     const noButton = document.getElementById("no");
     const yesButton = document.getElementById("yes");
+    const loadingScreen = document.getElementById("loading-screen");
+    const celebrationScreen = document.getElementById("celebration");
     const loveMusic = document.getElementById("loveMusic");
     const questionText = document.getElementById("question-text");
 
@@ -16,7 +18,9 @@ document.addEventListener("DOMContentLoaded", function() {
     ];
 
     // Hide everything except the box
-    message.classList.add("hidden");
+    questionContainer.classList.add("hidden");
+    loadingScreen.classList.add("hidden");
+    celebrationScreen.classList.add("hidden");
 
     // Open box
     giftBox.addEventListener("click", function() {
@@ -24,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         setTimeout(() => {
             giftBox.style.display = "none";
-            message.classList.remove("hidden");
+            questionContainer.classList.remove("hidden");
             questionText.innerHTML = questions[questionIndex];
         }, 800);
     });
@@ -33,9 +37,19 @@ document.addEventListener("DOMContentLoaded", function() {
     yesButton.addEventListener("click", function() {
         questionIndex++;
 
-        if (questionIndex < questions.length) {
+        if (questionIndex < questions.length - 1) {
             questionText.innerHTML = questions[questionIndex];
             resetNoButton(); // Reset No button after each question
+        } else if (questionIndex === questions.length - 1) {
+            // Show loading screen before final question
+            questionContainer.classList.add("hidden");
+            loadingScreen.classList.remove("hidden");
+
+            setTimeout(() => {
+                loadingScreen.classList.add("hidden");
+                questionContainer.classList.remove("hidden");
+                questionText.innerHTML = questions[questionIndex];
+            }, 1500);
         } else {
             startCelebration();
         }
@@ -55,7 +69,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Celebration function
     function startCelebration() {
-        message.innerHTML = "<p>Yay! I Love You! ❤️</p>";
+        questionContainer.classList.add("hidden");
+        celebrationScreen.classList.remove("hidden");
         document.body.style.animation = "backgroundPulse 3s infinite";
         loveMusic.play();
 
