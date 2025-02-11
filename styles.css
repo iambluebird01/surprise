@@ -1,10 +1,13 @@
+/* Background */
 body {
-    background-color: pink;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
     text-align: center;
-    font-family: Arial, sans-serif;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
     overflow: hidden;
+    position: relative;
 }
 
+/* Hide elements initially */
 .hidden {
     display: none;
 }
@@ -12,50 +15,58 @@ body {
 /* Gift Box */
 #gift-box {
     position: relative;
-    width: 120px;
-    height: 120px;
-    background-color: white;
-    margin: 150px auto;
+    width: 140px;
+    height: 140px;
+    background: white;
+    margin: 180px auto;
     cursor: pointer;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .lid {
     position: absolute;
-    top: -20px;
-    width: 120px;
-    height: 20px;
-    background-color: red;
+    top: -30px;
+    width: 140px;
+    height: 30px;
+    background: red;
     border-radius: 5px;
     transition: transform 0.5s ease-in-out;
 }
 
 .lid.open {
-    transform: rotate(-30deg) translateY(-30px);
+    transform: rotate(-20deg) translateY(-40px);
 }
 
 /* Question Box */
 #question-container {
     background: white;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 25px;
+    border-radius: 15px;
     display: inline-block;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 50px;
 }
 
 /* Buttons */
 button {
-    padding: 10px 20px;
-    margin: 5px;
+    padding: 12px 25px;
+    margin: 10px;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s;
 }
 
 #yes {
-    background: hotpink;
+    background: #ff4081;
     color: white;
+    box-shadow: 0px 3px 8px rgba(255, 64, 129, 0.3);
+}
+
+#yes:hover {
+    background: #f50057;
 }
 
 #no {
@@ -65,21 +76,34 @@ button {
     transition: transform 0.3s ease;
 }
 
+#no:hover {
+    background: darkgray;
+}
+
 /* Loading Screen */
 #loading-screen {
     font-size: 24px;
     font-weight: bold;
 }
 
-/* Celebration Animation */
-@keyframes celebration {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0); }
+/* Celebration Screen */
+#celebration {
+    font-size: 26px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: bounce 1s infinite alternate;
+}
+
+/* Heart Confetti */
+@keyframes fall {
+    0% { transform: translateY(-20px); opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
 }
 
 .confetti {
     position: absolute;
     font-size: 24px;
-    animation: celebration 0.5s infinite;
+    color: red;
+    animation: fall 3s linear forwards;
 }

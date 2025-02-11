@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let questionIndex = 0;
     const questions = [
-        "Do you love me? ❤️",
+        "Do you like me? ❤️",
         "Are you sure? 🤔",
-        "Are you really, really sure? 😳",
+        "Are you really sure? 😳",
         "Will you be my Valentine? ❤️"
     ];
 
@@ -71,16 +71,14 @@ document.addEventListener("DOMContentLoaded", function() {
     function startCelebration() {
         questionContainer.classList.add("hidden");
         celebrationScreen.classList.remove("hidden");
-        document.body.style.animation = "backgroundPulse 3s infinite";
         loveMusic.play();
 
         setInterval(() => {
             let confetti = document.createElement("div");
             confetti.classList.add("confetti");
-            confetti.innerHTML = "🎉";
+            confetti.innerHTML = "❤️";
             confetti.style.left = Math.random() * 100 + "vw";
             confetti.style.top = "-20px";
-            confetti.style.animation = "fall 2s linear forwards";
             document.body.appendChild(confetti);
 
             setTimeout(() => confetti.remove(), 2000);
