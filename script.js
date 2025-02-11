@@ -15,14 +15,20 @@ document.addEventListener("DOMContentLoaded", function() {
         "Are you really, really sure? 😳"
     ];
 
+    // Initially hide everything except the gift box
+    message.classList.add("hidden");
+    loading.classList.add("hidden");
+
     // Click to open the gift box
     giftBox.addEventListener("click", function() {
-        lid.style.transform = "rotateX(180deg)";
+        lid.classList.add("open"); // Flip the lid
 
         setTimeout(() => {
-            giftBox.style.display = "none";
-            message.classList.remove("hidden"); // Show first question
-            questionText.innerHTML = questions[questionIndex]; 
+            giftBox.style.display = "none"; // Hide gift box
+            setTimeout(() => {
+                message.classList.remove("hidden"); // Show first question
+                questionText.innerHTML = questions[questionIndex];
+            }, 1000); // Delay for a smooth transition
         }, 800);
     });
 
